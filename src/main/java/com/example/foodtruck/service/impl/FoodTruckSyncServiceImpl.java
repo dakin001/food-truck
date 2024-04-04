@@ -62,8 +62,8 @@ public class FoodTruckSyncServiceImpl implements FoodTruckSyncService {
     }
 
     private FoodTruck convertToEntity(MobileFoodFacilityPermit permit) {
-        boolean hasLocation = permit.getLatitude() != null && permit.getLatitude() > 0
-                && permit.getLongitude() != null && permit.getLongitude() > 0;
+        boolean hasLocation = permit.getLatitude() != null && permit.getLatitude() != 0
+                && permit.getLongitude() != null && permit.getLongitude() != 0;
         return FoodTruck.builder()
                 .locationId(permit.getLocationId())
                 .address(permit.getAddress())

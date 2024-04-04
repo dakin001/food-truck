@@ -4,6 +4,7 @@ import com.example.foodtruck.model.FoodTruck;
 import com.example.foodtruck.model.FoodTruckDto;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -13,7 +14,8 @@ import java.util.List;
 public interface FoodTruckMapper {
     FoodTruckMapper INSTANCE = Mappers.getMapper(FoodTruckMapper.class);
 
-//    FoodTruckDto toDto(FoodTruck truck);
+    @Mapping(target = "distanceInMeter", ignore = true)
+    FoodTruckDto toDto(FoodTruck truck);
 
     List<FoodTruckDto> toDto(List<FoodTruck> trucks);
 }
