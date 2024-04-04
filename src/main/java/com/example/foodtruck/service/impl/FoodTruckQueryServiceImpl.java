@@ -10,6 +10,7 @@ import com.example.foodtruck.util.GeoUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 
@@ -36,10 +37,10 @@ public class FoodTruckQueryServiceImpl implements FoodTruckQueryService {
                 toLocation.getLatitude(), toLocation.getLongitude());
     }
 
-    private Comparator<FoodTruckDto> getSortComparator(FoodTruckQuery.SortBy sortBy) {
-        if (sortBy == FoodTruckQuery.SortBy.DATE) {
-            return Comparator.comparing(FoodTruckDto::getReceived);
+    private Comparator<FoodTruckDto> getSortComparator(String sort) {
+        if (FoodTruckQuery.SortBy.DISTANCE.name().equalsIgnoreCase(sort)) {
+            return Comparator.comparing(FoodTruckDto::getDistanceInMeter, Comparator.nullsLast(Long::compareTo));
         }
-        return Comparator.comparing(FoodTruckDto::getDistanceInMeter);
+        return Comparator.comparing(FoodTruckDto::getReceived, Comparator.nullsFirst(LocalDate::compareTo)).reversed();
     }
 }

@@ -29,7 +29,7 @@ class FoodTruckQueryServiceImplTest {
         // CASE
         FoodTruckQuery query = new FoodTruckQuery();
         query.setLocation(new Location(37.72980548057414, -122.39924710472444));
-        query.setSortBy(FoodTruckQuery.SortBy.DISTANCE);
+        query.setSortBy(FoodTruckQuery.SortBy.DISTANCE.name());
         when(repository.find(query)).thenReturn(getTestTrucks());
 
         // WHEN
@@ -44,7 +44,7 @@ class FoodTruckQueryServiceImplTest {
         // CASE
         FoodTruckQuery query = new FoodTruckQuery();
         query.setLocation(new Location(37.72980548057414, -122.39924710472444));
-        query.setSortBy(FoodTruckQuery.SortBy.DATE);
+        query.setSortBy(FoodTruckQuery.SortBy.DATE.name());
         when(repository.find(query)).thenReturn(getTestTrucks());
 
         // WHEN

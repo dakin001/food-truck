@@ -62,6 +62,8 @@ public class FoodTruckSyncServiceImpl implements FoodTruckSyncService {
     }
 
     private FoodTruck convertToEntity(MobileFoodFacilityPermit permit) {
+        boolean hasLocation = permit.getLatitude() != null && permit.getLatitude() > 0
+                && permit.getLongitude() != null && permit.getLongitude() > 0;
         return FoodTruck.builder()
                 .locationId(permit.getLocationId())
                 .address(permit.getAddress())
@@ -69,7 +71,7 @@ public class FoodTruckSyncServiceImpl implements FoodTruckSyncService {
                 .foodItems(permit.getFoodItems())
                 .daysHours(permit.getDaysHours())
                 .received(LocalDate.parse(permit.getReceived(), DATE_FORMATTER))
-                .location(new Location(permit.getLatitude(), permit.getLongitude()))
+                .location(hasLocation ? new Location(permit.getLatitude(), permit.getLongitude()) : null)
                 .build();
     }
 }
