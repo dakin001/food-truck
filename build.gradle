@@ -42,3 +42,8 @@ tasks.named('bootBuildImage') {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+jar {
+	archivesBaseName = 'app-server'
+	version = ''
+}
